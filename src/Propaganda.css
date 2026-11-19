@@ -1,0 +1,470 @@
+
+/* ==========================================
+   PROPAGANDA SECTION
+   ANIMAL FARM — EDITORIAL DESIGN
+========================================== */
+
+.propaganda-section {
+  width: 100%;
+  padding: 110px 5% 125px;
+  background: #173b3c;
+  color: #f5f0e6;
+}
+
+.propaganda-container {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* ==========================================
+   SECTION INTRODUCTION
+========================================== */
+
+.propaganda-intro {
+  max-width: 850px;
+  margin-bottom: 65px;
+}
+
+.propaganda-eyebrow {
+  margin: 0 0 24px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 3px;
+  color: #dba46c;
+}
+
+.propaganda-intro h2 {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(65px, 7vw, 105px);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -2px;
+  color: #f5f0e6;
+}
+
+.propaganda-intro h2 em {
+  font-weight: 500;
+  color: #dba46c;
+}
+
+.propaganda-description {
+  max-width: 680px;
+  margin: 36px 0 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: #f5f0e6;
+}
+
+/* ==========================================
+   TWO-COLUMN LAYOUT
+========================================== */
+
+.propaganda-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+  gap: 55px;
+  align-items: start;
+}
+
+/* ==========================================
+   LEFT MENU
+========================================== */
+
+.propaganda-menu {
+  min-width: 0;
+}
+
+.propaganda-menu-label {
+  margin: 0 0 24px;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 2.8px;
+  color: #dba46c;
+}
+
+.propaganda-methods {
+  display: flex;
+  flex-direction: column;
+}
+
+.propaganda-method {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  width: 100%;
+  min-height: 84px;
+  padding: 23px 20px;
+  border: 0;
+  border-bottom: 1px solid rgba(245, 240, 230, 0.25);
+  border-radius: 0;
+  background: transparent;
+  color: #f5f0e6;
+  font-family: 'Lato', sans-serif;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    padding 0.25s ease;
+}
+
+.propaganda-method:hover {
+  background: rgba(245, 240, 230, 0.09);
+}
+
+.propaganda-method.active {
+  background: #f5f0e6;
+  color: #173b3c;
+  border-bottom-color: transparent;
+}
+
+.propaganda-method-number {
+  flex-shrink: 0;
+  font-size: 14px;
+  font-weight: 900;
+  color: #dba46c;
+}
+
+.propaganda-method.active .propaganda-method-number {
+  color: #8b1021;
+}
+
+.propaganda-method-title {
+  flex: 1;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.propaganda-method-arrow {
+  flex-shrink: 0;
+  margin-left: auto;
+  font-size: 21px;
+  font-weight: 400;
+  transition: transform 0.25s ease;
+}
+
+.propaganda-method:hover .propaganda-method-arrow,
+.propaganda-method.active .propaganda-method-arrow {
+  transform: translate(3px, -3px);
+}
+
+.propaganda-method:focus-visible {
+  outline: 2px solid #dba46c;
+  outline-offset: 3px;
+}
+
+/* ==========================================
+   RIGHT DETAIL CARD
+========================================== */
+
+.propaganda-card {
+  min-width: 0;
+  overflow: hidden;
+  border-radius: 14px;
+  background: #f5f0e6;
+  color: #173b3c;
+}
+
+/* CARD HEADER */
+
+.propaganda-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 54px;
+  padding: 18px 30px;
+  background: #f5f0e6;
+  border-bottom: 1px solid rgba(23, 59, 60, 0.12);
+}
+
+.propaganda-card-header span {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  color: #173b3c;
+}
+
+.propaganda-card-header span:last-child {
+  white-space: nowrap;
+}
+
+/* ==========================================
+   NEW ILLUSTRATIONS
+========================================== */
+
+.propaganda-card-visual {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #e7dac7;
+}
+
+.propaganda-illustration {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center;
+  animation: propaganda-image-enter 0.35s ease both;
+}
+
+@keyframes propaganda-image-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.025);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* ==========================================
+   CARD CONTENT
+========================================== */
+
+.propaganda-card-content {
+  padding: 36px 38px 42px;
+}
+
+.propaganda-card-period {
+  margin: 0 0 18px;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #8b1021;
+}
+
+.propaganda-card-content h3 {
+  margin: 0 0 20px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(40px, 4vw, 60px);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -1px;
+  color: #173b3c;
+}
+
+.propaganda-card-description {
+  margin: 0 0 20px;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  font-weight: 700;
+  line-height: 1.65;
+  color: #173b3c;
+}
+
+.propaganda-card-explanation {
+  margin: 0 0 30px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.85;
+  color: #60635d;
+}
+
+/* EXAMPLE FROM THE BOOK */
+
+.propaganda-card-example {
+  padding: 24px 0;
+  border-top: 1px solid rgba(23, 59, 60, 0.2);
+}
+
+.propaganda-card-example span,
+.propaganda-card-significance span {
+  display: block;
+  margin-bottom: 12px;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+  color: #8b1021;
+}
+
+.propaganda-card-example p {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #173b3c;
+}
+
+/* WHY IT MATTERS */
+
+.propaganda-card-significance {
+  padding: 24px;
+  background: #e7dac7;
+  border-left: 3px solid #8b1021;
+}
+
+.propaganda-card-significance p {
+  margin: 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #173b3c;
+}
+
+/* ==========================================
+   RESPONSIVE — TABLET
+========================================== */
+
+@media (max-width: 1050px) {
+  .propaganda-section {
+    padding: 85px 5% 100px;
+  }
+
+  .propaganda-intro h2 {
+    font-size: clamp(58px, 8vw, 85px);
+  }
+
+  .propaganda-layout {
+    grid-template-columns: minmax(250px, 0.9fr) minmax(0, 1.1fr);
+    gap: 28px;
+  }
+
+  .propaganda-method {
+    gap: 14px;
+    padding: 20px 15px;
+  }
+
+  .propaganda-method-title {
+    font-size: 15px;
+  }
+
+  .propaganda-card-content {
+    padding: 30px 28px 35px;
+  }
+
+  .propaganda-card-content h3 {
+    font-size: 44px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+  .propaganda-section {
+    padding: 75px 6% 85px;
+  }
+
+  .propaganda-intro {
+    margin-bottom: 45px;
+  }
+
+  .propaganda-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2.2px;
+  }
+
+  .propaganda-intro h2 {
+    font-size: clamp(49px, 11vw, 70px);
+    line-height: 0.98;
+    letter-spacing: -1px;
+  }
+
+  .propaganda-description {
+    margin-top: 26px;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .propaganda-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .propaganda-menu-label {
+    margin-bottom: 17px;
+    font-size: 10px;
+  }
+
+  .propaganda-method {
+    min-height: 68px;
+    padding: 18px 15px;
+    gap: 14px;
+  }
+
+  .propaganda-method-number {
+    font-size: 12px;
+  }
+
+  .propaganda-method-title {
+    font-size: 15px;
+  }
+
+  .propaganda-method-arrow {
+    font-size: 19px;
+  }
+
+  .propaganda-card {
+    border-radius: 12px;
+  }
+
+  .propaganda-card-header {
+    min-height: 48px;
+    padding: 15px 18px;
+  }
+
+  .propaganda-card-header span {
+    font-size: 9px;
+    letter-spacing: 1px;
+  }
+
+  .propaganda-illustration {
+    aspect-ratio: 16 / 9;
+  }
+
+  .propaganda-card-content {
+    padding: 28px 23px 32px;
+  }
+
+  .propaganda-card-period {
+    font-size: 10px;
+  }
+
+  .propaganda-card-content h3 {
+    font-size: 43px;
+  }
+
+  .propaganda-card-description {
+    font-size: 16px;
+  }
+
+  .propaganda-card-explanation,
+  .propaganda-card-example p,
+  .propaganda-card-significance p {
+    font-size: 15px;
+  }
+
+  .propaganda-card-significance {
+    padding: 20px;
+  }
+}
+
+/* ==========================================
+   ACCESSIBILITY
+========================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .propaganda-method,
+  .propaganda-method-arrow,
+  .propaganda-illustration {
+    transition: none;
+    animation: none;
+  }
+}

@@ -1,0 +1,390 @@
+
+/* ===================================
+   ANIMAL FARM — INTERACTIVE TIMELINE
+   Typography: Cormorant Garamond + Lato
+=================================== */
+
+.timeline-section {
+  background: #f5f0e6;
+  padding: 110px 6% 70px;
+  scroll-margin-top: 20px;
+}
+
+/* ===================================
+   SECTION HEADING
+=================================== */
+
+.timeline-heading {
+  max-width: 850px;
+  margin-bottom: 65px;
+}
+
+.timeline-heading h2 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(55px, 7vw, 100px);
+  font-weight: 600;
+  line-height: 0.98;
+  letter-spacing: -1.5px;
+  margin: 22px 0 30px;
+}
+
+.timeline-heading h2 em {
+  color: #8b1021;
+  font-weight: 600;
+}
+
+.timeline-heading > p:last-child {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  color: #60635d;
+  line-height: 1.8;
+  max-width: 560px;
+}
+
+/* ===================================
+   MAIN LAYOUT
+=================================== */
+
+.timeline-layout {
+  display: grid;
+  grid-template-columns: 0.85fr 1.15fr;
+  gap: 55px;
+  align-items: start;
+}
+
+/* ===================================
+   EVENTS LIST
+=================================== */
+
+.timeline-list {
+  border-top: 1px solid #d8d0c2;
+}
+
+.timeline-event {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 20px;
+  padding: 22px 15px;
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid #d8d0c2;
+  color: #173b3c;
+  text-align: left;
+  cursor: pointer;
+  font-family: 'Lato', sans-serif;
+
+  transition:
+    background 0.25s ease,
+    padding 0.25s ease,
+    color 0.25s ease;
+}
+
+.timeline-event:hover {
+  background: #e9e2d6;
+  padding-left: 25px;
+}
+
+.timeline-event.active {
+  background: #173b3c;
+  color: #ffffff;
+  padding-left: 25px;
+}
+
+.timeline-number {
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #8b1021;
+}
+
+.timeline-event.active .timeline-number {
+  color: #e8b57c;
+}
+
+.timeline-event-info {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex: 1;
+}
+
+.timeline-event-info small {
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: 0.65;
+}
+
+.timeline-event-info strong {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.timeline-arrow {
+  font-size: 20px;
+  transition: transform 0.25s ease;
+}
+
+.timeline-event:hover .timeline-arrow {
+  transform: translate(3px, -3px);
+}
+
+/* ===================================
+   DETAIL CARD
+=================================== */
+
+.timeline-detail {
+  background: #fffdf8;
+  border: 1px solid #e1dace;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(23, 59, 60, 0.07);
+  animation: detailEnter 0.35s ease;
+}
+
+@keyframes detailEnter {
+  from {
+    opacity: 0.5;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ===================================
+   CARD HEADER
+=================================== */
+
+.detail-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding: 20px 25px;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  border-bottom: 1px solid #e1dace;
+}
+
+/* ===================================
+   EVENT ILLUSTRATION
+=================================== */
+
+.detail-illustration {
+  width: 100%;
+  height: 320px;
+  background: #e8dfcd;
+  position: relative;
+  overflow: hidden;
+}
+
+.timeline-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.5s ease;
+}
+
+.timeline-detail:hover .timeline-image {
+  transform: scale(1.025);
+}
+
+/* ===================================
+   CARD CONTENT
+=================================== */
+
+.detail-content {
+  padding: 35px;
+}
+
+.detail-theme {
+  display: inline-block;
+  background: #f2e4dc;
+  color: #8b1021;
+  padding: 8px 12px;
+  border-radius: 3px;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.detail-content h3 {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(38px, 4vw, 55px);
+  font-weight: 600;
+  line-height: 1.05;
+  margin: 20px 0;
+}
+
+.detail-description {
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+  color: #60635d;
+}
+
+/* ===================================
+   SIGNIFICANCE
+=================================== */
+
+.detail-significance {
+  margin-top: 30px;
+  padding: 22px;
+  background: #f5f0e6;
+  border-left: 3px solid #8b1021;
+}
+
+.detail-significance strong {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  color: #8b1021;
+}
+
+.detail-significance p {
+  font-family: 'Lato', sans-serif;
+  font-size: 15px;
+  line-height: 1.7;
+  margin-bottom: 0;
+  color: #173b3c;
+}
+
+/* ===================================
+   CARD NAVIGATION
+=================================== */
+
+.detail-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 35px;
+  border-top: 1px solid #e1dace;
+}
+
+.detail-navigation button {
+  background: transparent;
+  border: 0;
+  font-family: 'Lato', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  color: #8b1021;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.detail-navigation button:hover {
+  opacity: 0.65;
+}
+
+.detail-navigation button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.detail-progress {
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  color: #8b857d;
+  letter-spacing: 1px;
+}
+
+/* ===================================
+   FOOTNOTE
+=================================== */
+
+.timeline-footnote {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  border-top: 1px solid #d8d0c2;
+  margin-top: 70px;
+  padding-top: 20px;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  letter-spacing: 1.5px;
+}
+
+/* ===================================
+   RESPONSIVE DESIGN
+=================================== */
+
+@media (max-width: 900px) {
+  .timeline-layout {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .timeline-heading {
+    margin-bottom: 40px;
+  }
+}
+
+@media (max-width: 600px) {
+  .timeline-section {
+    padding: 70px 5%;
+  }
+
+  .timeline-heading h2 {
+    font-size: 55px;
+  }
+
+  .timeline-event {
+    padding: 19px 12px;
+  }
+
+  .timeline-event-info strong {
+    font-size: 15px;
+  }
+
+  .detail-illustration {
+    height: 230px;
+  }
+
+  .detail-content {
+    padding: 25px;
+  }
+
+  .detail-content h3 {
+    font-size: 42px;
+  }
+
+  .detail-navigation {
+    padding: 20px 25px;
+  }
+
+  .timeline-footnote {
+    flex-direction: column;
+    gap: 10px;
+  }
+}
+
+/* ===================================
+   ACCESSIBILITY
+=================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .timeline-detail {
+    animation: none;
+  }
+
+  .timeline-image,
+  .timeline-event,
+  .timeline-arrow {
+    transition: none;
+  }
+}

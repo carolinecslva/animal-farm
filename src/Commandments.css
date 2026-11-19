@@ -1,0 +1,658 @@
+
+/* ==========================================
+   THE COMMANDMENTS — MEMORY GAME
+========================================== */
+
+.commandments-section {
+  width: 100%;
+  padding: 110px 5% 125px;
+  background: #f5f0e6;
+  color: #173b3c;
+}
+
+.commandments-container {
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+/* INTRO */
+
+.commandments-intro {
+  max-width: 850px;
+  margin-bottom: 65px;
+}
+
+.commandments-eyebrow {
+  margin: 0 0 24px;
+  color: #8b1021;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 3px;
+}
+
+.commandments-intro h2 {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(65px, 7vw, 105px);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -2px;
+}
+
+.commandments-intro h2 em {
+  color: #8b1021;
+  font-weight: 500;
+}
+
+.commandments-description {
+  max-width: 680px;
+  margin: 35px 0 0;
+  font-family: 'Lato', sans-serif;
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.commandments-description-secondary {
+  max-width: 680px;
+  margin: 15px 0 0;
+  color: #60635d;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+/* GAME CONTAINER */
+
+.commandments-game {
+  overflow: hidden;
+  border-radius: 16px;
+  background: #173b3c;
+  color: #f5f0e6;
+  box-shadow: 0 18px 55px rgba(23, 59, 60, 0.12);
+}
+
+.commandments-game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+  padding: 32px 40px;
+  border-bottom: 1px solid rgba(245, 240, 230, 0.18);
+}
+
+.commandments-game-label {
+  color: #dba46c;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.commandments-game-header h3 {
+  margin: 8px 0 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 35px;
+  font-weight: 600;
+}
+
+.commandments-restart {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border: 1px solid rgba(245, 240, 230, 0.4);
+  border-radius: 6px;
+  background: transparent;
+  color: #f5f0e6;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+.commandments-restart:hover {
+  background: #f5f0e6;
+  color: #173b3c;
+}
+
+/* GAME LAYOUT */
+
+.commandments-game-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 35px;
+  align-items: start;
+  padding: 40px;
+}
+
+/* MEMORY BOARD */
+
+.commandments-board {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 15px;
+}
+
+/* CARDS */
+
+.commandments-card {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 0.78;
+  padding: 0;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  cursor: pointer;
+  perspective: 1100px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.commandments-card-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  transform-style: preserve-3d;
+  transition: transform 0.55s ease;
+}
+
+.commandments-card.is-flipped .commandments-card-inner {
+  transform: rotateY(180deg);
+}
+
+.commandments-card-back,
+.commandments-card-front {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+/* BACK OF CARD */
+
+.commandments-card-back {
+  border: 2px solid #dba46c;
+  background: linear-gradient(
+    145deg,
+    #8b1021 0%,
+    #650a18 100%
+  );
+  color: #dba46c;
+}
+
+.commandments-card-back::before {
+  content: '';
+  position: absolute;
+  inset: 8px;
+  border: 1px solid rgba(219, 164, 108, 0.4);
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+.commandments-card-symbol {
+  font-family: Georgia, serif;
+  font-size: clamp(30px, 4vw, 55px);
+  line-height: 1;
+}
+
+.commandments-card-back-label {
+  margin-top: 16px;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+  text-align: center;
+}
+
+.commandments-card-back-number {
+  margin-top: 12px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 22px;
+}
+
+/* FRONT OF CARD */
+
+.commandments-card-front {
+  transform: rotateY(180deg);
+  border: 2px solid #dba46c;
+  background: #f5f0e6;
+  color: #173b3c;
+  text-align: center;
+}
+
+.commandments-card-type {
+  position: absolute;
+  top: 15px;
+  left: 0;
+  width: 100%;
+  color: #8b1021;
+  font-family: 'Lato', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+}
+
+.commandments-card-text {
+  display: block;
+  width: 100%;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(17px, 1.8vw, 27px);
+  font-weight: 700;
+  line-height: 1.12;
+  overflow-wrap: break-word;
+}
+
+.commandments-card-bottom {
+  position: absolute;
+  bottom: 13px;
+  left: 0;
+  width: 100%;
+  color: #8b1021;
+  font-family: 'Lato', sans-serif;
+  font-size: 8px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.commandments-card.is-matched .commandments-card-front {
+  border-color: #dba46c;
+  background: #e8e1d2;
+}
+
+.commandments-card.is-matched {
+  cursor: default;
+}
+
+.commandments-card:not(.is-flipped):hover
+.commandments-card-inner {
+  transform: translateY(-5px);
+}
+
+.commandments-card:focus-visible {
+  outline: 3px solid #dba46c;
+  outline-offset: 4px;
+}
+
+/* SIDEBAR */
+
+.commandments-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 28px;
+  border: 1px solid rgba(219, 164, 108, 0.4);
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.commandments-stat {
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(245, 240, 230, 0.18);
+}
+
+.commandments-stat > span,
+.commandments-progress > span {
+  display: block;
+  margin-bottom: 10px;
+  color: #dba46c;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.8px;
+}
+
+.commandments-stat strong {
+  display: block;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 55px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.commandments-stat strong small {
+  font-size: 27px;
+  opacity: 0.65;
+}
+
+.commandments-progress-track {
+  height: 7px;
+  overflow: hidden;
+  border-radius: 10px;
+  background: rgba(245, 240, 230, 0.2);
+}
+
+.commandments-progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: #dba46c;
+  transition: width 0.4s ease;
+}
+
+.commandments-progress small {
+  display: block;
+  margin-top: 10px;
+  text-align: right;
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+}
+
+.commandments-sidebar-quote {
+  margin: 0;
+  color: #dba46c;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 28px;
+  font-style: italic;
+  line-height: 1.2;
+}
+
+.commandments-sidebar-note {
+  margin: 0;
+  color: rgba(245, 240, 230, 0.8);
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  line-height: 1.7;
+}
+
+/* ==========================================
+   MATCH EXPLANATION MODAL
+========================================== */
+
+.commandments-overlay {
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: rgba(10, 29, 30, 0.85);
+  backdrop-filter: blur(6px);
+}
+
+.commandments-modal {
+  width: 100%;
+  max-width: 650px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 40px;
+  border: 2px solid #dba46c;
+  border-radius: 14px;
+  background: #f5f0e6;
+  color: #173b3c;
+  box-shadow: 0 25px 80px rgba(0, 0, 0, 0.3);
+  animation: commandments-modal-enter 0.3s ease both;
+}
+
+@keyframes commandments-modal-enter {
+  from {
+    opacity: 0;
+    transform: translateY(18px) scale(0.97);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.commandments-modal-eyebrow {
+  color: #8b1021;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.commandments-modal h3 {
+  margin: 15px 0 28px;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(38px, 5vw, 55px);
+  line-height: 1;
+}
+
+.commandments-modal-comparison {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+.commandments-modal-comparison > div {
+  padding: 20px;
+  border-radius: 8px;
+  background: #e8e1d2;
+}
+
+.commandments-modal-comparison > div:last-child {
+  background: #f0d9d9;
+}
+
+.commandments-modal-comparison span {
+  display: block;
+  margin-bottom: 12px;
+  color: #8b1021;
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.5px;
+}
+
+.commandments-modal-comparison p {
+  margin: 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 25px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.commandments-modal-explanation {
+  margin: 0 0 28px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  line-height: 1.8;
+}
+
+.commandments-modal-button,
+.commandments-play-again {
+  padding: 15px 25px;
+  border: none;
+  border-radius: 6px;
+  background: #8b1021;
+  color: #fff;
+  font-family: 'Lato', sans-serif;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+  transition: background 0.25s ease;
+}
+
+.commandments-modal-button:hover,
+.commandments-play-again:hover {
+  background: #650a18;
+}
+
+/* ==========================================
+   FINAL RESULTS
+========================================== */
+
+.commandments-results {
+  padding: 55px 35px 65px;
+  border-top: 1px solid rgba(245, 240, 230, 0.2);
+  text-align: center;
+}
+
+.commandments-results > span {
+  color: #dba46c;
+  font-family: 'Lato', sans-serif;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.commandments-results h3 {
+  margin: 15px 0;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(40px, 5vw, 65px);
+}
+
+.commandments-results > p {
+  font-family: 'Lato', sans-serif;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+.commandments-results-reflection {
+  max-width: 650px;
+  margin: 25px auto 30px;
+  color: rgba(245, 240, 230, 0.8);
+}
+
+/* ==========================================
+   TABLET
+========================================== */
+
+@media (max-width: 1100px) {
+  .commandments-game-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .commandments-sidebar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    align-items: start;
+    gap: 20px;
+  }
+
+  .commandments-stat {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .commandments-sidebar-quote,
+  .commandments-sidebar-note {
+    display: none;
+  }
+
+  .commandments-card-text {
+    font-size: clamp(18px, 2.5vw, 27px);
+  }
+}
+
+/* ==========================================
+   MOBILE
+========================================== */
+
+@media (max-width: 700px) {
+  .commandments-section {
+    padding: 75px 5% 85px;
+  }
+
+  .commandments-intro {
+    margin-bottom: 45px;
+  }
+
+  .commandments-eyebrow {
+    font-size: 10px;
+    letter-spacing: 2px;
+  }
+
+  .commandments-intro h2 {
+    font-size: clamp(50px, 11vw, 70px);
+  }
+
+  .commandments-description {
+    font-size: 16px;
+  }
+
+  .commandments-description-secondary {
+    font-size: 15px;
+  }
+
+  .commandments-game-header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 25px 20px;
+  }
+
+  .commandments-game-header h3 {
+    font-size: 30px;
+  }
+
+  .commandments-game-layout {
+    gap: 25px;
+    padding: 20px 12px;
+  }
+
+  .commandments-board {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .commandments-card {
+    aspect-ratio: 1.1;
+  }
+
+  .commandments-card-text {
+    font-size: clamp(17px, 4vw, 23px);
+  }
+
+  .commandments-card-back-label {
+    font-size: 9px;
+  }
+
+  .commandments-sidebar {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+  }
+
+  .commandments-stat strong {
+    font-size: 45px;
+  }
+
+  .commandments-modal {
+    padding: 27px 20px;
+  }
+
+  .commandments-modal-comparison {
+    grid-template-columns: 1fr;
+  }
+
+  .commandments-modal-comparison p {
+    font-size: 23px;
+  }
+
+  .commandments-results {
+    padding: 40px 20px 50px;
+  }
+}
+
+@media (max-width: 380px) {
+  .commandments-card-text {
+    font-size: 16px;
+  }
+
+  .commandments-card-front,
+  .commandments-card-back {
+    padding: 10px;
+  }
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+  .commandments-card-inner,
+  .commandments-progress-fill,
+  .commandments-modal {
+    transition: none;
+    animation: none;
+  }
+}
