@@ -7,10 +7,14 @@ import Propaganda from './Propaganda'
 import Commandments from './Commandments'
 import Quiz from './Quiz'
 
-function App() {
+export default function App() {
+
   const [showWelcome, setShowWelcome] = useState(true)
 
-  // Prevent scrolling while the welcome screen is visible
+  /* ==========================================
+     WELCOME MODAL
+  ========================================== */
+
   useEffect(() => {
     const previousOverflow = document.body.style.overflow
 
@@ -26,18 +30,19 @@ function App() {
   }, [showWelcome])
 
   const openWelcome = () => setShowWelcome(true)
+
   const closeWelcome = () => setShowWelcome(false)
 
   return (
     <main className="site">
 
-      {/* =====================================
-          WELCOME SCREEN
-          Appears on every page load
-      ===================================== */}
+      {/* ==========================================
+          WELCOME POPUP
+      ========================================== */}
 
       {showWelcome && (
         <div className="welcome-overlay">
+
           <section
             className="welcome-modal"
             role="dialog"
@@ -45,13 +50,11 @@ function App() {
             aria-labelledby="welcome-title"
           >
 
-            {/* TOP BAR */}
             <div className="welcome-topline">
               <span>GEORGE ORWELL · 1945</span>
               <span>A LITERARY EXPLORATION</span>
             </div>
 
-            {/* MAIN CONTENT */}
             <div className="welcome-content">
 
               <span className="welcome-eyebrow">
@@ -65,25 +68,29 @@ function App() {
               </h2>
 
               <p className="welcome-description">
-                Explore a world where equality becomes inequality,
-                language becomes manipulation, and power changes
-                everything.
+                Explore a world where equality becomes
+                inequality, language becomes manipulation,
+                and power changes everything.
               </p>
 
               <div className="welcome-divider" />
 
-              {/* PROJECT CREDITS */}
               <span className="welcome-credits-label">
                 CREATED BY
               </span>
 
               <div className="welcome-names">
+
                 <span>Fernanda Barbosa</span>
-                <span className="welcome-ampersand">&</span>
-                <span>Nilo José Martins</span>
+
+                <span className="welcome-ampersand">
+                  &
+                </span>
+
+                <span>Nilo Jose Martins</span>
+
               </div>
 
-              {/* ENTER BUTTON */}
               <button
                 type="button"
                 className="welcome-enter"
@@ -94,22 +101,29 @@ function App() {
 
             </div>
 
-            {/* BOTTOM BAR */}
             <div className="welcome-bottomline">
-              <span>POWER · PROPAGANDA · EQUALITY</span>
+
+              <span>
+                POWER · PROPAGANDA · EQUALITY
+              </span>
+
               <span>2026</span>
+
             </div>
 
           </section>
+
         </div>
       )}
 
-      {/* =====================================
+      {/* ==========================================
           NAVIGATION
-      ===================================== */}
+      ========================================== */}
 
       <header className="navigation" id="home">
+
         <a href="#home" className="nav-brand">
+
           <span className="nav-brand-title">
             Animal Farm<span>.</span>
           </span>
@@ -117,12 +131,14 @@ function App() {
           <span className="nav-brand-subtitle">
             A LITERARY EXPLORATION
           </span>
+
         </a>
 
         <nav
           className="nav-links"
           aria-label="Main navigation"
         >
+
           <a href="#home" className="nav-home">
             Home
           </a>
@@ -142,19 +158,25 @@ function App() {
           <a href="#quiz" className="nav-cta">
             Quiz <span>↗</span>
           </a>
+
         </nav>
+
       </header>
 
-      {/* =====================================
-          HERO SECTION
-      ===================================== */}
+      {/* ==========================================
+          EDITORIAL HERO
+      ========================================== */}
 
       <section className="editorial-hero">
+
         <div className="editorial-hero-content">
 
           <div className="editorial-hero-eyebrow">
+
             <span>GEORGE ORWELL · 1945</span>
+
             <span className="editorial-hero-rule" />
+
           </div>
 
           <h1>
@@ -163,7 +185,9 @@ function App() {
             Farm<span>.</span>
           </h1>
 
-          <h2>The Corruption of a Revolution</h2>
+          <h2>
+            The Corruption of a Revolution
+          </h2>
 
           <p className="editorial-hero-description">
             A political fable about power, manipulation
@@ -180,28 +204,33 @@ function App() {
         </div>
 
         <div className="editorial-hero-art">
+
           <img
             src="/images/animal-farm-hero.png"
             alt="Vintage illustration of Animal Farm with a pig, farm animals, a barn and a windmill"
           />
+
         </div>
+
       </section>
 
-      {/* =====================================
-          QUOTE BAND
-      ===================================== */}
+      {/* ==========================================
+          EDITORIAL QUOTE
+      ========================================== */}
 
       <section className="editorial-quote">
+
         <span className="editorial-quote-line" />
 
         <p>“All animals are equal.”</p>
 
         <span className="editorial-quote-line" />
+
       </section>
 
-      {/* =====================================
+      {/* ==========================================
           STORY INTRODUCTION
-      ===================================== */}
+      ========================================== */}
 
       <section className="story-intro" id="story">
 
@@ -227,33 +256,33 @@ function App() {
 
       </section>
 
-      {/* =====================================
-          01 — TIMELINE
-      ===================================== */}
+      {/* ==========================================
+          01 — INTERACTIVE TIMELINE
+      ========================================== */}
 
       <Timeline />
 
-      {/* =====================================
+      {/* ==========================================
           02 — PROPAGANDA
-      ===================================== */}
+      ========================================== */}
 
       <Propaganda />
 
-      {/* =====================================
+      {/* ==========================================
           03 — MEMORY GAME
-      ===================================== */}
+      ========================================== */}
 
       <Commandments />
 
-      {/* =====================================
+      {/* ==========================================
           04 — QUIZ
-      ===================================== */}
+      ========================================== */}
 
       <Quiz />
 
-      {/* =====================================
+      {/* ==========================================
           FOOTER
-      ===================================== */}
+      ========================================== */}
 
       <footer className="site-footer">
 
@@ -276,5 +305,3 @@ function App() {
     </main>
   )
 }
-
-export default App
