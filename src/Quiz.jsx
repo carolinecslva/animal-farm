@@ -1,5 +1,6 @@
 
 import { useState } from 'react'
+import { ArrowUpRight, ArrowRight, RotateCw } from 'lucide-react'
 import './Quiz.css'
 
 const quizzes = {
@@ -329,7 +330,7 @@ export default function Quiz() {
               </span>
 
               <span className="quiz-choice-bottom">
-                10 QUESTIONS <span>↗</span>
+                10 QUESTIONS <span><ArrowUpRight size={18} strokeWidth={1.8} aria-hidden="true" /></span>
               </span>
             </button>
 
@@ -353,7 +354,7 @@ export default function Quiz() {
               </span>
 
               <span className="quiz-choice-bottom">
-                10 QUESTIONS <span>↗</span>
+                10 QUESTIONS <span><ArrowUpRight size={18} strokeWidth={1.8} aria-hidden="true" /></span>
               </span>
             </button>
 
@@ -447,8 +448,8 @@ export default function Quiz() {
                   onClick={nextQuestion}
                 >
                   {index === quiz.questions.length - 1
-                    ? 'See My Results ↗'
-                    : 'Next Question →'}
+                    ? <>See My Results <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" /></>
+                    : <>Next Question <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" /></>}
                 </button>
               </div>
             )}
@@ -482,14 +483,14 @@ export default function Quiz() {
                 type="button"
                 onClick={() => startQuiz(mode)}
               >
-                Try Again ↻
+                Try Again <RotateCw size={16} strokeWidth={1.8} aria-hidden="true" />
               </button>
 
               <button
                 type="button"
                 onClick={returnToChallenges}
               >
-                Choose Another Challenge ↗
+                Choose Another Challenge <ArrowUpRight size={16} strokeWidth={1.8} aria-hidden="true" />
               </button>
 
             </div>

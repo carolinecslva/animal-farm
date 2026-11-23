@@ -1,5 +1,6 @@
 
 import { useEffect, useRef, useState } from 'react'
+import { ArrowRight, RotateCw } from 'lucide-react'
 import './Commandments.css'
 
 const pairs = [
@@ -206,7 +207,7 @@ export default function Commandments() {
               className="commandments-restart"
               onClick={restartGame}
             >
-              ↻ Restart Game
+              <RotateCw size={16} strokeWidth={1.8} aria-hidden="true" /> Restart Game
             </button>
           </div>
 
@@ -369,8 +370,9 @@ export default function Commandments() {
                   onClick={closeExplanation}
                 >
                   {completed
-                    ? 'See My Results →'
-                    : 'Continue Playing →'}
+                    ? 'See My Results'
+                    : 'Continue Playing'}
+                  <ArrowRight size={16} strokeWidth={1.8} aria-hidden="true" />
                 </button>
               </div>
             </div>
@@ -400,7 +402,7 @@ export default function Commandments() {
                 className="commandments-play-again"
                 onClick={restartGame}
               >
-                Play Again ↻
+                Play Again <RotateCw size={16} strokeWidth={1.8} aria-hidden="true" />
               </button>
             </div>
           )}

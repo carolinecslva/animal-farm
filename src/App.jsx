@@ -1,5 +1,6 @@
 
 import { useEffect, useState } from 'react'
+import { ArrowUpRight } from 'lucide-react'
 import './App.css'
 
 import Timeline from './Timeline'
@@ -96,7 +97,14 @@ export default function App() {
                 className="welcome-enter"
                 onClick={closeWelcome}
               >
-                Explore Animal Farm <span>↗</span>
+                Explore Animal Farm
+                <span>
+                  <ArrowUpRight
+                    size={18}
+                    strokeWidth={1.8}
+                    aria-hidden="true"
+                  />
+                </span>
               </button>
 
             </div>
@@ -156,7 +164,14 @@ export default function App() {
           </a>
 
           <a href="#quiz" className="nav-cta">
-            Quiz <span>↗</span>
+            Quiz
+            <span>
+              <ArrowUpRight
+                size={16}
+                strokeWidth={1.8}
+                aria-hidden="true"
+              />
+            </span>
           </a>
 
         </nav>
@@ -198,7 +213,14 @@ export default function App() {
             href="#timeline"
             className="editorial-hero-button"
           >
-            Explore the Story <span>↗</span>
+            Explore the Story
+            <span>
+              <ArrowUpRight
+                size={18}
+                strokeWidth={1.8}
+                aria-hidden="true"
+              />
+            </span>
           </a>
 
         </div>
@@ -297,7 +319,13 @@ export default function App() {
           className="footer-about"
           onClick={openWelcome}
         >
-          About the Project ↗
+          About the Project
+          {' '}
+          <ArrowUpRight
+            size={14}
+            strokeWidth={1.8}
+            aria-hidden="true"
+          />
         </button>
 
       </footer>

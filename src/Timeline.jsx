@@ -1,5 +1,6 @@
 
 import { useState, useEffect, useRef } from 'react'
+import { ArrowUpRight, ArrowLeft, ArrowRight, ArrowDown } from 'lucide-react'
 import './Timeline.css'
 
 const events = [
@@ -158,7 +159,7 @@ function EventDetail({
           onClick={() => onPrevious(index)}
           disabled={index === 0}
         >
-          ← Previous
+          <ArrowLeft size={15} strokeWidth={1.8} aria-hidden="true" /> Previous
         </button>
 
         <span className="detail-progress">
@@ -170,7 +171,7 @@ function EventDetail({
           onClick={() => onNext(index)}
           disabled={index === events.length - 1}
         >
-          Next →
+          Next <ArrowRight size={15} strokeWidth={1.8} aria-hidden="true" />
         </button>
       </div>
     </article>
@@ -325,7 +326,7 @@ export default function Timeline() {
                 className="timeline-arrow"
                 aria-hidden="true"
               >
-                ↗
+                <ArrowUpRight size={20} strokeWidth={1.8} aria-hidden="true" />
               </span>
             </button>
           ))}
@@ -355,7 +356,7 @@ export default function Timeline() {
 
         <div className="timeline-mobile-hint">
           <span>SELECT AN EVENT TO EXPLORE</span>
-          <span>↓</span>
+          <span><ArrowDown size={18} strokeWidth={1.8} aria-hidden="true" /></span>
         </div>
 
         <div className="timeline-mobile-stack">

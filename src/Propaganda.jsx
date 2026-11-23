@@ -1,23 +1,28 @@
 
 import { useState, useEffect, useRef } from 'react'
-function Arrow({ direction = 'up-right', className = '' }) {
-  const arrows = {
-    'up-right': '↗',
-    right: '→',
-    left: '←',
-    down: '↓',
-    up: '↑',
-    plus: '+',
-    minus: '−',
+import { ArrowUpRight, ArrowRight, ArrowLeft, ArrowDown, ArrowUp } from 'lucide-react'
+import './Propaganda.css'
+
+function Arrow({ direction = 'up-right', className = '', size = 16 }) {
+  const icons = {
+    'up-right': ArrowUpRight,
+    right: ArrowRight,
+    left: ArrowLeft,
+    down: ArrowDown,
+    up: ArrowUp,
   }
+
+  const Icon = icons[direction] || ArrowUpRight
 
   return (
     <span className={className} aria-hidden="true">
-      {arrows[direction] || '↗'}
+      {direction === 'plus' ? '+' : direction === 'minus' ? '−' : (
+        <Icon size={size} strokeWidth={1.8} />
+      )}
     </span>
   )
 }
-import './Propaganda.css'
+
 
 const methods = [
   {
