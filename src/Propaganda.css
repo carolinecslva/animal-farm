@@ -61,18 +61,24 @@
 }
 
 /* ==========================================
-   TWO-COLUMN LAYOUT
+   DESKTOP LAYOUT
 ========================================== */
 
 .propaganda-layout {
   display: grid;
-  grid-template-columns: minmax(280px, 0.85fr) minmax(0, 1.15fr);
+  grid-template-columns:
+    minmax(280px, 0.85fr)
+    minmax(0, 1.15fr);
   gap: 55px;
   align-items: start;
 }
 
+.propaganda-mobile {
+  display: none;
+}
+
 /* ==========================================
-   LEFT MENU
+   DESKTOP METHODS MENU
 ========================================== */
 
 .propaganda-menu {
@@ -81,10 +87,12 @@
 
 .propaganda-menu-label {
   margin: 0 0 24px;
+
   font-family: 'Lato', sans-serif;
   font-size: 12px;
   font-weight: 900;
   letter-spacing: 2.8px;
+
   color: #dba46c;
 }
 
@@ -97,17 +105,22 @@
   display: flex;
   align-items: center;
   gap: 22px;
+
   width: 100%;
   min-height: 84px;
   padding: 23px 20px;
+
   border: 0;
   border-bottom: 1px solid rgba(245, 240, 230, 0.25);
   border-radius: 0;
+
   background: transparent;
   color: #f5f0e6;
+
   font-family: 'Lato', sans-serif;
   text-align: left;
   cursor: pointer;
+
   transition:
     background 0.25s ease,
     color 0.25s ease,
@@ -131,12 +144,14 @@
   color: #dba46c;
 }
 
-.propaganda-method.active .propaganda-method-number {
+.propaganda-method.active
+.propaganda-method-number {
   color: #8b1021;
 }
 
 .propaganda-method-title {
   flex: 1;
+  min-width: 0;
   font-size: 17px;
   font-weight: 700;
   line-height: 1.4;
@@ -145,29 +160,28 @@
 .propaganda-method-arrow {
   flex-shrink: 0;
   margin-left: auto;
-  font-size: 21px;
-  font-weight: 400;
+
   transition: transform 0.25s ease;
 }
 
-.propaganda-method:hover .propaganda-method-arrow,
-.propaganda-method.active .propaganda-method-arrow {
+.propaganda-method:hover
+.propaganda-method-arrow,
+
+.propaganda-method.active
+.propaganda-method-arrow {
   transform: translate(3px, -3px);
 }
 
-.propaganda-method:focus-visible {
-  outline: 2px solid #dba46c;
-  outline-offset: 3px;
-}
-
 /* ==========================================
-   RIGHT DETAIL CARD
+   DETAIL CARD
 ========================================== */
 
 .propaganda-card {
   min-width: 0;
   overflow: hidden;
+
   border-radius: 14px;
+
   background: #f5f0e6;
   color: #173b3c;
 }
@@ -179,8 +193,10 @@
   align-items: center;
   justify-content: space-between;
   gap: 20px;
+
   min-height: 54px;
   padding: 18px 30px;
+
   background: #f5f0e6;
   border-bottom: 1px solid rgba(23, 59, 60, 0.12);
 }
@@ -190,6 +206,7 @@
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 1.5px;
+
   color: #173b3c;
 }
 
@@ -198,13 +215,14 @@
 }
 
 /* ==========================================
-   NEW ILLUSTRATIONS
+   ILLUSTRATIONS
 ========================================== */
 
 .propaganda-card-visual {
   position: relative;
   width: 100%;
   overflow: hidden;
+
   background: #e7dac7;
 }
 
@@ -213,8 +231,10 @@
   width: 100%;
   height: auto;
   aspect-ratio: 16 / 9;
+
   object-fit: cover;
   object-position: center;
+
   animation: propaganda-image-enter 0.35s ease both;
 }
 
@@ -240,38 +260,46 @@
 
 .propaganda-card-period {
   margin: 0 0 18px;
+
   font-family: 'Lato', sans-serif;
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 2px;
+
   color: #8b1021;
 }
 
 .propaganda-card-content h3 {
   margin: 0 0 20px;
+
   font-family: 'Cormorant Garamond', Georgia, serif;
   font-size: clamp(40px, 4vw, 60px);
   font-weight: 600;
   line-height: 1.05;
   letter-spacing: -1px;
+
   color: #173b3c;
 }
 
 .propaganda-card-description {
   margin: 0 0 20px;
+
   font-family: 'Lato', sans-serif;
   font-size: 18px;
   font-weight: 700;
   line-height: 1.65;
+
   color: #173b3c;
 }
 
 .propaganda-card-explanation {
   margin: 0 0 30px;
+
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 1.85;
+
   color: #60635d;
 }
 
@@ -279,6 +307,7 @@
 
 .propaganda-card-example {
   padding: 24px 0;
+
   border-top: 1px solid rgba(23, 59, 60, 0.2);
 }
 
@@ -286,18 +315,22 @@
 .propaganda-card-significance span {
   display: block;
   margin-bottom: 12px;
+
   font-family: 'Lato', sans-serif;
   font-size: 11px;
   font-weight: 900;
   letter-spacing: 2px;
+
   color: #8b1021;
 }
 
 .propaganda-card-example p {
   margin: 0;
+
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   line-height: 1.8;
+
   color: #173b3c;
 }
 
@@ -305,23 +338,356 @@
 
 .propaganda-card-significance {
   padding: 24px;
+
   background: #e7dac7;
   border-left: 3px solid #8b1021;
 }
 
 .propaganda-card-significance p {
   margin: 0;
+
   font-family: 'Lato', sans-serif;
   font-size: 16px;
   line-height: 1.75;
+
   color: #173b3c;
 }
 
 /* ==========================================
-   RESPONSIVE — TABLET
+   MOBILE CARD STACK
+========================================== */
+
+.propaganda-mobile-hint {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+
+  padding: 0 2px 17px;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 1.7px;
+
+  color: #dba46c;
+}
+
+.propaganda-mobile-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* MOBILE CARD */
+
+.propaganda-mobile-item {
+  min-width: 0;
+
+  background: #f5f0e6;
+  border: 1px solid rgba(245, 240, 230, 0.35);
+  border-radius: 12px;
+
+  overflow: hidden;
+
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.propaganda-mobile-item.is-expanded {
+  border-color: #dba46c;
+
+  box-shadow:
+    0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+/* ==========================================
+   MOBILE CARD HEADER
+========================================== */
+
+.propaganda-mobile-trigger {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+
+  width: 100%;
+  min-height: 88px;
+  padding: 19px 17px;
+
+  border: 0;
+  background: #f5f0e6;
+  color: #173b3c;
+
+  font-family: 'Lato', sans-serif;
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background 0.25s ease,
+    color 0.25s ease;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.propaganda-mobile-trigger.active {
+  background: #8b1021;
+  color: #ffffff;
+}
+
+/* CARD NUMBER */
+
+.propaganda-mobile-number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 35px;
+  height: 35px;
+  flex-shrink: 0;
+
+  border-radius: 50%;
+
+  background: #e7dac7;
+  color: #8b1021;
+
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.propaganda-mobile-trigger.active
+.propaganda-mobile-number {
+  background: rgba(219, 164, 108, 0.18);
+  color: #e8b57c;
+}
+
+/* CARD TITLE */
+
+.propaganda-mobile-title {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  flex: 1;
+  min-width: 0;
+}
+
+.propaganda-mobile-title small {
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  line-height: 1.4;
+
+  opacity: 0.7;
+}
+
+.propaganda-mobile-title strong {
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+/* PLUS / MINUS ICON */
+
+.propaganda-mobile-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+
+  border: 1px solid #d8d0c2;
+  border-radius: 50%;
+
+  color: #8b1021;
+}
+
+.propaganda-mobile-trigger.active
+.propaganda-mobile-icon {
+  border-color: rgba(232, 181, 124, 0.45);
+  color: #e8b57c;
+  background: rgba(232, 181, 124, 0.1);
+}
+
+/* ==========================================
+   MOBILE EXPANDABLE PANEL
+========================================== */
+
+.propaganda-mobile-panel {
+  overflow: hidden;
+  background: #f5f0e6;
+}
+
+.propaganda-mobile-panel[hidden] {
+  display: none;
+}
+
+.propaganda-card-mobile {
+  width: 100%;
+  border-radius: 0;
+
+  animation: propaganda-mobile-reveal 0.35s ease both;
+}
+
+@keyframes propaganda-mobile-reveal {
+  from {
+    opacity: 0;
+    clip-path: inset(0 0 15% 0);
+  }
+
+  to {
+    opacity: 1;
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+.propaganda-card-mobile
+.propaganda-illustration {
+  aspect-ratio: 16 / 9;
+  animation: none;
+}
+
+/* ==========================================
+   MOBILE CARD CONTENT
+========================================== */
+
+.propaganda-card-mobile
+.propaganda-card-content {
+  padding: 24px;
+}
+
+.propaganda-card-mobile
+.propaganda-card-period {
+  margin-bottom: 12px;
+
+  font-size: 9px;
+  letter-spacing: 1.2px;
+}
+
+.propaganda-mobile-category {
+  display: inline-block;
+  margin-bottom: 16px;
+  padding: 7px 10px;
+
+  border-radius: 3px;
+
+  background: #e7dac7;
+  color: #8b1021;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 9px;
+  font-weight: 900;
+  letter-spacing: 0.8px;
+}
+
+.propaganda-card-mobile
+.propaganda-card-description {
+  margin-bottom: 15px;
+
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.propaganda-card-mobile
+.propaganda-card-explanation {
+  margin-bottom: 20px;
+
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.propaganda-card-mobile
+.propaganda-card-example {
+  padding: 18px 0;
+}
+
+.propaganda-card-mobile
+.propaganda-card-significance {
+  padding: 16px;
+}
+
+.propaganda-card-mobile
+.propaganda-card-example span,
+
+.propaganda-card-mobile
+.propaganda-card-significance span {
+  margin-bottom: 9px;
+
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+.propaganda-card-mobile
+.propaganda-card-example p,
+
+.propaganda-card-mobile
+.propaganda-card-significance p {
+  font-size: 14px;
+  line-height: 1.65;
+}
+
+/* ==========================================
+   MOBILE CARD NAVIGATION
+========================================== */
+
+.propaganda-mobile-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+
+  padding: 12px 20px;
+
+  background: #f5f0e6;
+  border-top: 1px solid #d8d0c2;
+}
+
+.propaganda-mobile-navigation button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+
+  min-height: 44px;
+  padding: 8px 0;
+
+  border: 0;
+
+  background: transparent;
+  color: #8b1021;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.propaganda-mobile-navigation button:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.propaganda-mobile-navigation > span {
+  color: #8b857d;
+
+  font-family: 'Lato', sans-serif;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1px;
+
+  white-space: nowrap;
+}
+
+/* ==========================================
+   RESPONSIVE — SMALL DESKTOP
 ========================================== */
 
 @media (max-width: 1050px) {
+
   .propaganda-section {
     padding: 85px 5% 100px;
   }
@@ -331,7 +697,10 @@
   }
 
   .propaganda-layout {
-    grid-template-columns: minmax(250px, 0.9fr) minmax(0, 1.1fr);
+    grid-template-columns:
+      minmax(250px, 0.9fr)
+      minmax(0, 1.1fr);
+
     gap: 28px;
   }
 
@@ -354,105 +723,131 @@
 }
 
 /* ==========================================
-   RESPONSIVE — MOBILE
+   RESPONSIVE — TABLET
 ========================================== */
 
-@media (max-width: 700px) {
+@media (max-width: 900px) {
+
   .propaganda-section {
-    padding: 75px 6% 85px;
+    padding: 85px 6% 75px;
   }
 
   .propaganda-intro {
-    margin-bottom: 45px;
+    margin-bottom: 40px;
+  }
+
+  .propaganda-desktop {
+    display: none;
+  }
+
+  .propaganda-mobile {
+    display: block;
+
+    width: 100%;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .propaganda-mobile-trigger {
+    padding: 20px;
+  }
+}
+
+/* ==========================================
+   RESPONSIVE — MOBILE
+========================================== */
+
+@media (max-width: 600px) {
+
+  .propaganda-section {
+    padding: 70px 5% 65px;
+  }
+
+  .propaganda-intro {
+    margin-bottom: 35px;
   }
 
   .propaganda-eyebrow {
+    margin-bottom: 18px;
+
     font-size: 10px;
-    letter-spacing: 2.2px;
+    letter-spacing: 2px;
   }
 
   .propaganda-intro h2 {
-    font-size: clamp(49px, 11vw, 70px);
+    font-size: clamp(42px, 11vw, 55px);
     line-height: 0.98;
     letter-spacing: -1px;
   }
 
   .propaganda-description {
-    margin-top: 26px;
-    font-size: 16px;
-    line-height: 1.75;
-  }
+    margin-top: 24px;
 
-  .propaganda-layout {
-    grid-template-columns: 1fr;
-    gap: 35px;
-  }
-
-  .propaganda-menu-label {
-    margin-bottom: 17px;
-    font-size: 10px;
-  }
-
-  .propaganda-method {
-    min-height: 68px;
-    padding: 18px 15px;
-    gap: 14px;
-  }
-
-  .propaganda-method-number {
-    font-size: 12px;
-  }
-
-  .propaganda-method-title {
     font-size: 15px;
+    line-height: 1.7;
   }
 
-  .propaganda-method-arrow {
-    font-size: 19px;
+  .propaganda-mobile-stack {
+    gap: 9px;
   }
 
-  .propaganda-card {
-    border-radius: 12px;
+  .propaganda-mobile-trigger {
+    min-height: 76px;
+    padding: 15px 13px;
+    gap: 12px;
   }
 
-  .propaganda-card-header {
-    min-height: 48px;
-    padding: 15px 18px;
+  .propaganda-mobile-number {
+    width: 32px;
+    height: 32px;
+
+    font-size: 11px;
   }
 
-  .propaganda-card-header span {
-    font-size: 9px;
-    letter-spacing: 1px;
+  .propaganda-mobile-title small {
+    font-size: 8px;
+    letter-spacing: 0.8px;
   }
 
-  .propaganda-illustration {
-    aspect-ratio: 16 / 9;
+  .propaganda-mobile-title strong {
+    font-size: 14px;
   }
 
+  .propaganda-mobile-icon {
+    width: 27px;
+    height: 27px;
+  }
+
+  .propaganda-card-mobile
   .propaganda-card-content {
-    padding: 28px 23px 32px;
+    padding: 18px;
   }
 
-  .propaganda-card-period {
-    font-size: 10px;
-  }
-
-  .propaganda-card-content h3 {
-    font-size: 43px;
-  }
-
+  .propaganda-card-mobile
   .propaganda-card-description {
-    font-size: 16px;
-  }
-
-  .propaganda-card-explanation,
-  .propaganda-card-example p,
-  .propaganda-card-significance p {
     font-size: 15px;
   }
 
+  .propaganda-card-mobile
+  .propaganda-card-explanation {
+    font-size: 14px;
+  }
+
+  .propaganda-card-mobile
   .propaganda-card-significance {
-    padding: 20px;
+    padding: 14px;
+  }
+
+  .propaganda-card-mobile
+  .propaganda-card-example p,
+
+  .propaganda-card-mobile
+  .propaganda-card-significance p {
+    font-size: 13px;
+  }
+
+  .propaganda-mobile-navigation {
+    padding: 10px 16px;
   }
 }
 
@@ -460,10 +855,21 @@
    ACCESSIBILITY
 ========================================== */
 
+.propaganda-method:focus-visible,
+.propaganda-mobile-trigger:focus-visible,
+.propaganda-mobile-navigation button:focus-visible {
+  outline: 2px solid #dba46c;
+  outline-offset: -4px;
+}
+
 @media (prefers-reduced-motion: reduce) {
+
   .propaganda-method,
   .propaganda-method-arrow,
-  .propaganda-illustration {
+  .propaganda-illustration,
+  .propaganda-mobile-item,
+  .propaganda-mobile-trigger,
+  .propaganda-card-mobile {
     transition: none;
     animation: none;
   }
