@@ -1,6 +1,22 @@
 
 import { useState, useEffect, useRef } from 'react'
-import Arrow from './Arrow'
+function Arrow({ direction = 'up-right', className = '' }) {
+  const arrows = {
+    'up-right': '↗',
+    right: '→',
+    left: '←',
+    down: '↓',
+    up: '↑',
+    plus: '+',
+    minus: '−',
+  }
+
+  return (
+    <span className={className} aria-hidden="true">
+      {arrows[direction] || '↗'}
+    </span>
+  )
+}
 import './Propaganda.css'
 
 const methods = [
