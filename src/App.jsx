@@ -80,7 +80,7 @@ function App() {
               <div className="welcome-names">
                 <span>Fernanda Barbosa</span>
                 <span className="welcome-ampersand">&</span>
-                <span>Nilo [Surname]</span>
+                <span>Nilo José Martins</span>
               </div>
 
               {/* ENTER BUTTON */}

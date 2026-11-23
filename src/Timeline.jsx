@@ -1,5 +1,5 @@
 
-import { useState } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import './Timeline.css'
 
 const events = [
@@ -93,25 +93,191 @@ const events = [
   },
 ]
 
+/* =====================================
+   REUSABLE EVENT DETAIL
+===================================== */
+
+function EventDetail({
+  event,
+  index,
+  onPrevious,
+  onNext,
+  mobile = false,
+}) {
+  return (
+    <article
+      className={`timeline-detail ${
+        mobile ? 'timeline-detail-mobile' : ''
+      }`}
+    >
+      {/* CARD HEADER */}
+
+      {!mobile && (
+        <div className="detail-top">
+          <span>{event.chapter}</span>
+          <span>EVENT {event.number} / 08</span>
+        </div>
+      )}
+
+      {/* ILLUSTRATION */}
+
+      <div className="detail-illustration">
+        <img
+          src={event.image}
+          alt={`Illustration of ${event.title}`}
+          className="timeline-image"
+          loading="lazy"
+        />
+      </div>
+
+      {/* CONTENT */}
+
+      <div className="detail-content">
+        <span className="detail-theme">
+          {event.theme}
+        </span>
+
+        {!mobile && <h3>{event.title}</h3>}
+
+        <p className="detail-description">
+          {event.description}
+        </p>
+
+        <div className="detail-significance">
+          <strong>WHY DOES IT MATTER?</strong>
+
+          <p>{event.significance}</p>
+        </div>
+      </div>
+
+      {/* NAVIGATION */}
+
+      <div className="detail-navigation">
+        <button
+          type="button"
+          onClick={() => onPrevious(index)}
+          disabled={index === 0}
+        >
+          ← Previous
+        </button>
+
+        <span className="detail-progress">
+          {event.number} / 08
+        </span>
+
+        <button
+          type="button"
+          onClick={() => onNext(index)}
+          disabled={index === events.length - 1}
+        >
+          Next →
+        </button>
+      </div>
+    </article>
+  )
+}
+
+/* =====================================
+   MAIN TIMELINE COMPONENT
+===================================== */
+
 export default function Timeline() {
   const [activeEvent, setActiveEvent] = useState(0)
+  const [expandedEvent, setExpandedEvent] = useState(null)
+
+  const mobileCards = useRef([])
+  const shouldScroll = useRef(false)
 
   const selectedEvent = events[activeEvent]
 
-  const goToPrevious = () => {
-    setActiveEvent((current) => Math.max(0, current - 1))
+  /* =====================================
+     AUTOMATIC MOBILE SCROLL
+  ===================================== */
+
+  useEffect(() => {
+    if (!shouldScroll.current || expandedEvent === null) {
+      return
+    }
+
+    if (!window.matchMedia('(max-width: 900px)').matches) {
+      shouldScroll.current = false
+      return
+    }
+
+    const frame = requestAnimationFrame(() => {
+      const card = mobileCards.current[expandedEvent]
+
+      if (card) {
+        const navigation =
+          document.querySelector('.navigation')
+
+        const navigationHeight =
+          navigation?.getBoundingClientRect().height || 0
+
+        const top =
+          card.getBoundingClientRect().top +
+          window.scrollY -
+          navigationHeight -
+          16
+
+        const reducedMotion = window.matchMedia(
+          '(prefers-reduced-motion: reduce)'
+        ).matches
+
+        window.scrollTo({
+          top: Math.max(0, top),
+          behavior: reducedMotion ? 'instant' : 'smooth',
+        })
+      }
+
+      shouldScroll.current = false
+    })
+
+    return () => cancelAnimationFrame(frame)
+  }, [expandedEvent])
+
+  /* =====================================
+     EVENT SELECTION
+  ===================================== */
+
+  const selectDesktopEvent = (index) => {
+    setActiveEvent(index)
+    setExpandedEvent(index)
   }
 
-  const goToNext = () => {
-    setActiveEvent((current) =>
-      Math.min(events.length - 1, current + 1)
-    )
+  const selectMobileEvent = (index) => {
+    if (expandedEvent === index) {
+      shouldScroll.current = false
+      setExpandedEvent(null)
+      return
+    }
+
+    shouldScroll.current = true
+    setActiveEvent(index)
+    setExpandedEvent(index)
+  }
+
+  const navigateToEvent = (index, mobile = false) => {
+    if (index < 0 || index >= events.length) {
+      return
+    }
+
+    shouldScroll.current = mobile
+
+    setActiveEvent(index)
+    setExpandedEvent(index)
   }
 
   return (
-    <section className="timeline-section" id="timeline">
+    <section
+      className="timeline-section"
+      id="timeline"
+    >
 
-      {/* SECTION INTRODUCTION */}
+      {/* =====================================
+          SECTION INTRODUCTION
+      ===================================== */}
+
       <div className="timeline-heading">
         <p className="eyebrow">01 / THE STORY</p>
 
@@ -127,10 +293,14 @@ export default function Timeline() {
         </p>
       </div>
 
-      {/* INTERACTIVE TIMELINE */}
-      <div className="timeline-layout">
+      {/* =====================================
+          DESKTOP LAYOUT
+      ===================================== */}
+
+      <div className="timeline-layout timeline-desktop">
 
         {/* EVENTS LIST */}
+
         <div className="timeline-list">
           {events.map((event, index) => (
             <button
@@ -139,7 +309,7 @@ export default function Timeline() {
               className={`timeline-event ${
                 activeEvent === index ? 'active' : ''
               }`}
-              onClick={() => setActiveEvent(index)}
+              onClick={() => selectDesktopEvent(index)}
               aria-pressed={activeEvent === index}
             >
               <span className="timeline-number">
@@ -151,77 +321,131 @@ export default function Timeline() {
                 <strong>{event.title}</strong>
               </span>
 
-              <span className="timeline-arrow">↗</span>
+              <span
+                className="timeline-arrow"
+                aria-hidden="true"
+              >
+                ↗
+              </span>
             </button>
           ))}
         </div>
 
-        {/* SELECTED EVENT CARD */}
-        <article className="timeline-detail" key={activeEvent}>
+        {/* SELECTED EVENT */}
 
-          <div className="detail-top">
-            <span>{selectedEvent.chapter}</span>
-            <span>
-              EVENT {selectedEvent.number} / 08
-            </span>
-          </div>
+        <EventDetail
+          key={activeEvent}
+          event={selectedEvent}
+          index={activeEvent}
+          onPrevious={(index) =>
+            navigateToEvent(index - 1)
+          }
+          onNext={(index) =>
+            navigateToEvent(index + 1)
+          }
+        />
 
-          {/* EVENT ILLUSTRATION */}
-          <div className="detail-illustration">
-            <img
-              src={selectedEvent.image}
-              alt={`Illustration of ${selectedEvent.title}`}
-              className="timeline-image"
-            />
-          </div>
-
-          {/* EVENT INFORMATION */}
-          <div className="detail-content">
-
-            <span className="detail-theme">
-              {selectedEvent.theme}
-            </span>
-
-            <h3>{selectedEvent.title}</h3>
-
-            <p className="detail-description">
-              {selectedEvent.description}
-            </p>
-
-            <div className="detail-significance">
-              <strong>WHY DOES IT MATTER?</strong>
-              <p>{selectedEvent.significance}</p>
-            </div>
-
-          </div>
-
-          {/* NAVIGATION */}
-          <div className="detail-navigation">
-            <button
-              type="button"
-              onClick={goToPrevious}
-              disabled={activeEvent === 0}
-            >
-              ← Previous
-            </button>
-
-            <span className="detail-progress">
-              {selectedEvent.number} / 08
-            </span>
-
-            <button
-              type="button"
-              onClick={goToNext}
-              disabled={activeEvent === events.length - 1}
-            >
-              Next →
-            </button>
-          </div>
-
-        </article>
       </div>
 
-      {/* FOOTNOTE */}
+      {/* =====================================
+          MOBILE ACCORDION
+      ===================================== */}
+
+      <div className="timeline-mobile">
+
+        <div className="timeline-mobile-hint">
+          <span>SELECT AN EVENT TO EXPLORE</span>
+          <span>↓</span>
+        </div>
+
+        <div className="timeline-mobile-stack">
+
+          {events.map((event, index) => {
+            const isExpanded = expandedEvent === index
+
+            return (
+              <div
+                key={event.number}
+                ref={(element) => {
+                  mobileCards.current[index] = element
+                }}
+                className={`timeline-mobile-card ${
+                  isExpanded ? 'is-expanded' : ''
+                }`}
+              >
+
+                {/* ACCORDION HEADER */}
+
+                <button
+                  type="button"
+                  id={`timeline-trigger-${index}`}
+                  className={`timeline-mobile-trigger ${
+                    isExpanded ? 'active' : ''
+                  }`}
+                  onClick={() => selectMobileEvent(index)}
+                  aria-expanded={isExpanded}
+                  aria-controls={`timeline-panel-${index}`}
+                >
+
+                  <span className="timeline-mobile-number">
+                    {event.number}
+                  </span>
+
+                  <span className="timeline-mobile-title">
+                    <small>{event.chapter}</small>
+                    <strong>{event.title}</strong>
+                  </span>
+
+                  <span
+                    className="timeline-mobile-icon"
+                    aria-hidden="true"
+                  >
+                    {isExpanded ? '−' : '+'}
+                  </span>
+
+                </button>
+
+                {/* EXPANDABLE CONTENT */}
+
+                <div
+                  id={`timeline-panel-${index}`}
+                  role="region"
+                  aria-labelledby={`timeline-trigger-${index}`}
+                  hidden={!isExpanded}
+                  className="timeline-mobile-panel"
+                >
+                  {isExpanded && (
+                    <EventDetail
+                      event={event}
+                      index={index}
+                      mobile
+                      onPrevious={(currentIndex) =>
+                        navigateToEvent(
+                          currentIndex - 1,
+                          true
+                        )
+                      }
+                      onNext={(currentIndex) =>
+                        navigateToEvent(
+                          currentIndex + 1,
+                          true
+                        )
+                      }
+                    />
+                  )}
+                </div>
+
+              </div>
+            )
+          })}
+
+        </div>
+      </div>
+
+      {/* =====================================
+          FOOTNOTE
+      ===================================== */}
+
       <div className="timeline-footnote">
         <span>1945 / GEORGE ORWELL</span>
         <span>THE STORY OF A REVOLUTION BETRAYED</span>
